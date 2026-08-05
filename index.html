@@ -115,8 +115,12 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--ink);letter-spacing:-.3px}
 .nav-logo img{height:30px;width:auto}
 .nav-badge{display:inline-flex;align-items:center;gap:5px;background:var(--accent-lighter);color:var(--accent-deep);padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.3px;margin-left:10px}
-.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--ink-soft);align-items:center}
-.nav-links a:hover{color:var(--accent)}
+.nav-links{display:flex;gap:18px;font-size:13px;font-weight:600;color:var(--ink-soft);align-items:center}
+.nav-links a{position:relative;padding:6px 2px;transition:color .25s}
+.nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#8B5CF6,#6C63FF);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav-links a:hover{color:var(--accent-deep)}
+.nav-links a:hover::after,.nav-links a.nav-active::after{transform:scaleX(1)}
+.nav-links a.nav-active{color:var(--accent-deep)}
 .nav-links .btn-primary{color:#fff;padding:9px 22px;font-size:13px}
 
 /* Hero */
@@ -378,6 +382,18 @@ details.faq-item .faq-answer{padding:0 24px 22px;font-size:15px;color:var(--ink-
 .cta-hint{font-size:13px;opacity:.6;margin-top:18px;letter-spacing:.5px;position:relative;z-index:2}
 .cta-section .btn-download{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.25);padding:11px 22px;border-radius:999px;font-size:14px;font-weight:600;color:#fff;position:relative;z-index:2;transition:all .3s var(--ease);text-decoration:none;letter-spacing:.3px}
 .cta-section .btn-download:hover{background:rgba(255,255,255,0.25);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+.cta-dl-stack{display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;z-index:2;margin-top:10px}
+.cta-dl-stack .cta-price,.cta-dl-stack .dl-tabs{margin-bottom:0}
+.cta-dl-stack .cta-hint{margin-top:4px}
+.cta-dl-stack .btn-lg{box-shadow:0 12px 32px rgba(108,99,255,.35)}
+.dl-tabs{display:inline-flex;gap:4px;background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.22);border-radius:999px;padding:4px;margin-bottom:18px;position:relative;z-index:2}
+.dl-tab{border:none;background:transparent;color:rgba(255,255,255,.78);padding:9px 24px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;transition:all .3s var(--ease);font-family:var(--font-display);letter-spacing:.3px}
+.dl-tab.active{background:linear-gradient(135deg,#8B5CF6,#6C63FF);color:#fff;box-shadow:0 4px 14px rgba(108,99,255,.4)}
+.dl-tab:hover:not(.active){color:#fff}
+.dl-tabs--hero{background:var(--card);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--glass-border);margin-bottom:0}
+.dl-tabs--hero .dl-tab{color:var(--ink-soft);padding:7px 18px;font-size:13px}
+.dl-tabs--hero .dl-tab.active{color:#fff}
+.dl-tabs--hero .dl-tab:hover:not(.active){color:var(--ink)}
 
 footer{background:rgba(255,255,255,0.30);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink-muted);padding:54px 0;border-top:1px solid var(--line);position:relative}
 footer .container{display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;font-size:14px}
@@ -434,10 +450,13 @@ footer a:hover{color:var(--accent)}
   <div class="nav-links">
     <a class="nav-text" href="#smart-layout">一键成册</a>
     <a class="nav-text" href="#workflow">极简流程</a>
-    <a class="nav-text" href="#print-quality">印刷品质</a>
+    <a class="nav-text" href="#print-quality">印刷输出</a>
+    <a class="nav-text" href="#privacy">本地优先</a>
+    <a class="nav-text" href="#advanced">细节微调</a>
+    <a class="nav-text" href="#photo-tools">照片整理</a>
+    <a class="nav-text" href="#platform">双平台</a>
     <a class="nav-text" href="#compare">对比</a>
     <a class="nav-text" href="#faq">常见问题</a>
-    <a class="btn btn-primary" href="download/MemBook_1.0.0_x64-setup.exe" download><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> 下载桌面版</a>
   </div>
 </div></nav>
 
@@ -449,14 +468,19 @@ footer a:hover{color:var(--accent)}
     <div class="hero-tagline">帮你把零散的照片，变成一本精美的相册。</div>
     <p>MemBook 让做相册像整理相册一样简单——<strong>拖拽就能用</strong>，几分钟排好版面，导出 PDF 就能送印厂。不需要设计基础，也不需要手动对齐每一张照片。几分钟，把回忆做成一本<strong>可以翻动的书</strong>。</p>
     <div class="hero-actions">
-      <a class="btn btn-primary btn-lg" href="download/MemBook_1.0.0_x64-setup.exe" download><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> 下载桌面版 · Windows</a>
-      <a class="btn btn-secondary btn-lg" href="javascript:void(0)" rel="noopener" style="cursor:default;opacity:.7;pointer-events:none" title="Web 版正在开发中"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Web 版开发中</a>
+      <a class="btn btn-primary btn-lg btn-dl" href="download/MemBook_1.0.0_x64-setup.exe" data-win="download/MemBook_1.0.0_x64-setup.exe" data-mac="download/MemBook_1.0.0_aarch64.dmg" download><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> 下载桌面版 · <span class="dl-os">Windows</span></a>
+      <div class="dl-tabs dl-tabs--hero">
+        <button class="dl-tab active" data-os="win" type="button">Windows</button>
+        <button class="dl-tab" data-os="mac" type="button">macOS</button>
+      </div>
+    </div>
+    <div style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12.5px;color:var(--ink-muted);letter-spacing:.3px">
+      <span style="display:inline-flex;align-items:center;gap:5px">📺 Web 版规划中</span>
     </div>
     <div class="hero-meta">
-      <span>🪟 Windows</span><span class="sep"></span>
-      <span>🍎 macOS</span><span class="sep"></span>
-      <span>🐧 Linux</span><span class="sep"></span>
-      <span>v1.0.0 · 15MB</span><span class="sep"></span>
+      <span>🪟 Windows 10+</span><span class="sep"></span>
+      <span>🍎 macOS 12+ · Apple Silicon</span><span class="sep"></span>
+      <span>v1.0.0</span><span class="sep"></span>
       <a href="#smart-layout" style="color:var(--accent);font-weight:600">看它怎么排 →</a>
     </div>
   </div>
@@ -620,7 +644,7 @@ footer a:hover{color:var(--accent)}
 <!-- Ch.02 Workflow — 三步成册 -->
 <section class="section reveal" id="workflow"><div class="container">
   <div class="chapter-head reveal"><span class="chapter-num">Ch.02</span><span class="chapter-rule"></span><span class="chapter-num">极简流程</span></div>
-  <h2 class="section-title reveal">从手机到相册，<em>只差一次拖拽</em></h2>
+  <h2 class="section-title reveal">从照片到相册，<em>只差一次拖拽</em></h2>
   <p class="section-sub reveal">三步成册——拖入、排版、导出。没有学习成本，没有复杂设置，几分钟完成一本可以送人的相册。想先整理乱糟糟的照片？桌面版还自带一套照片整理工具。</p>
   <div class="steps-grid">
     <div class="step-card reveal">
@@ -676,8 +700,8 @@ footer a:hover{color:var(--accent)}
             <!-- 书脊 -->
             <div style="position:absolute;top:0;bottom:0;left:0;width:14px;background:linear-gradient(90deg,rgba(60,45,140,0.85),rgba(108,99,255,0.55))"></div>
             <!-- 封面标题 -->
-            <div style="position:absolute;left:24px;right:10px;top:34px;font-family:var(--font-display);font-weight:700;font-size:15px;color:#fff;line-height:1.35;text-shadow:0 1px 6px rgba(0,0,0,0.4)">旅行<br>纪念册</div>
-            <div style="position:absolute;left:24px;right:10px;top:76px;font-family:var(--font-display);font-weight:500;font-size:9px;color:rgba(255,255,255,0.8);letter-spacing:.5px">2026 · 家庭相册</div>
+            <div style="position:absolute;left:24px;right:10px;top:34px;font-family:var(--font-display);font-weight:700;font-size:15px;color:#fff;line-height:1.35;text-shadow:0 1px 6px rgba(0,0,0,0.4)">家庭<br>相册</div>
+            <div style="position:absolute;left:24px;right:10px;top:76px;font-family:var(--font-display);font-weight:500;font-size:9px;color:rgba(255,255,255,0.8);letter-spacing:.5px">2026 · 我们的故事</div>
             <!-- 页边 -->
             <div style="position:absolute;right:6px;top:6px;bottom:6px;width:2px;background:rgba(255,255,255,0.6);border-radius:2px"></div>
           </div>
@@ -915,6 +939,10 @@ footer a:hover{color:var(--accent)}
       <h3><svg class="ic ic-title" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5a6.5 6.5 0 0 0-6.5 6.5c0 2.2 1.1 4 2.7 5.2l-.7 2.1 2.1-1.2c.8.3 1.6.4 2.4.4a6.5 6.5 0 0 0 0-13z"/><path d="M16 8a5 5 0 0 1 2.6 4.5"/></svg> 贴纸点缀</h3><div class="sub">上传贴纸 · 画布自由编辑</div>
       <p>从贴纸库拖一张进来就能用——<strong>8 方向缩放</strong>、<strong>任意角度旋转</strong>（拖拽旋转，单击转 90°）、<strong>水平/垂直镜像翻转</strong>。同一个贴纸复制多次，摆出想要的构图；贴纸和照片还能<strong>跨类型多选</strong>一起移动。</p>
       <div class="screen-tags"><span class="screen-tag">上传/批量上传贴纸</span><span class="screen-tag">8 方向缩放</span><span class="screen-tag">旋转 · 镜像翻转</span><span class="screen-tag">多选同框编辑</span></div>
+      <div style="margin-top:14px;display:flex;align-items:center;flex-wrap:wrap;gap:10px">
+        <a class="btn-sm" href="download/MemBook_Stickers_PNG.zip" download style="display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#8B5CF6,#6C63FF);color:#fff;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(108,99,255,.28);transition:all .3s var(--ease)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> 免费下载贴纸包</a>
+        <span style="font-size:11.5px;color:var(--ink-muted)">105 张 · PNG 透明底 · 7.8MB</span>
+      </div>
     </div><div class="visual-side"><div style="width:240px">
       <div style="background:rgba(255,255,255,0.60);border-radius:12px;border:1px solid var(--line);padding:14px">
         <div style="font-size:11px;color:var(--ink-muted);font-weight:600;letter-spacing:.4px;margin-bottom:10px">🎀 贴纸库</div>
@@ -1042,13 +1070,19 @@ footer a:hover{color:var(--accent)}
   <div class="cta-badge">翻开记忆的第一页</div>
   <h2>把瞬间<em>装订成册</em></h2>
   <p>免费试用 7 天，满意后激活即可终身使用。照片只留在你的电脑上，但故事值得与人分享。</p>
-  <div class="cta-price">
-    <span class="price-old">¥99</span>
-    <div class="price-now"><span>¥</span>29.9</div>
-    <span class="price-tag">限时特价</span>
+  <div class="cta-dl-stack">
+    <div class="cta-price">
+      <span class="price-old">¥99</span>
+      <div class="price-now"><span>¥</span>29.9</div>
+      <span class="price-tag">限时特价</span>
+    </div>
+    <div class="dl-tabs">
+      <button class="dl-tab active" data-os="win" type="button">Windows</button>
+      <button class="dl-tab" data-os="mac" type="button">macOS</button>
+    </div>
+    <a class="btn btn-lg btn-dl" href="download/MemBook_1.0.0_x64-setup.exe" data-win="download/MemBook_1.0.0_x64-setup.exe" data-mac="download/MemBook_1.0.0_aarch64.dmg" download><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> 立即下载 · 7 天全功能试用</a>
+    <div class="cta-hint" id="cta-hint">Windows 桌面版 · EXE 安装包 · 激活后终身免费</div>
   </div>
-  <div style="position:relative;z-index:2"><a class="btn btn-lg" href="download/MemBook_1.0.0_x64-setup.exe" download><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg> 立即下载 · 7 天全功能试用</a></div>
-  <div class="cta-hint" style="margin-top:16px">Windows 桌面版 · EXE 安装包 · 激活后终身免费</div>
 </div></section>
 
 <footer><div class="container">
@@ -1127,6 +1161,45 @@ footer a:hover{color:var(--accent)}
       });
     });
   }
+})();
+
+(function(){
+  var ua=navigator.userAgent,ud=navigator.userAgentData;
+  var os=(/Mac|iPhone|iPad|iPod/.test(ua)||(ud&&ud.platform==='macOS'))?'mac':((/Win/.test(ua)||(ud&&ud.platform==='Windows'))?'win':'win');
+  var files={win:'download/MemBook_1.0.0_x64-setup.exe',mac:'download/MemBook_1.0.0_aarch64.dmg'};
+  var labels={win:'Windows',mac:'macOS'};
+  var hints={win:'Windows 桌面版 · EXE 安装包 · 激活后终身免费',mac:'macOS 桌面版（Apple Silicon M 芯片）· DMG 安装包 · 激活后终身免费'};
+  function setOS(active){
+    document.querySelectorAll('.btn-dl').forEach(function(b){
+      if(files[active])b.href=files[active];
+      var l=b.querySelector('.dl-os');if(l)l.textContent=labels[active];
+    });
+    document.querySelectorAll('.dl-tab').forEach(function(t){t.classList.toggle('active',t.getAttribute('data-os')===active)});
+    var h=document.getElementById('cta-hint');if(h&&hints[active])h.textContent=hints[active];
+  }
+  document.querySelectorAll('.dl-tab').forEach(function(t){
+    t.addEventListener('click',function(){setOS(t.getAttribute('data-os'))});
+  });
+  setOS(os);
+})();
+
+(function(){
+  var nav=document.querySelector('nav');
+  var links=Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  var map=[];
+  links.forEach(function(a){
+    var el=document.querySelector(a.getAttribute('href'));
+    if(el)map.push({link:a,el:el});
+  });
+  function update(){
+    var y=window.scrollY+140;
+    var cur=null;
+    map.forEach(function(o){if(o.el.offsetTop<=y)cur=o});
+    map.forEach(function(o){o.link.classList.toggle('nav-active',o===cur)});
+    if(nav)nav.style.boxShadow=y>10?'0 4px 20px rgba(108,99,255,.10)':'none';
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
 })();
 </script>
 </body>
