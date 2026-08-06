@@ -485,10 +485,9 @@ footer a:hover{color:var(--accent)}
       <span style="display:inline-flex;align-items:center;gap:5px">📺 Web 版规划中</span>
     </div>
     <div class="hero-meta">
-      <span>🪟 Windows 10+</span><span class="sep"></span>
-      <span>🍎 macOS 12+ · Intel / Apple Silicon</span><span class="sep"></span>
+      <span>Windows 10+</span><span class="sep"></span>
+      <span>macOS 12+</span><span class="sep"></span>
       <span>v1.0.4</span><span class="sep"></span>
-      <span>📦 Windows 12.7MB · macOS 21.9MB</span><span class="sep"></span>
       <a href="#smart-layout" style="color:var(--accent);font-weight:600">看它怎么排 →</a>
     </div>
   </div>
@@ -1178,7 +1177,7 @@ footer a:hover{color:var(--accent)}
   var os=(/Mac|iPhone|iPad|iPod/.test(ua)||(ud&&ud.platform==='macOS'))?'mac':((/Win/.test(ua)||(ud&&ud.platform==='Windows'))?'win':'win');
   var files={win:'download/MemBook_1.0.4_x64-setup.exe',mac:'download/MemBook_1.0.4_universal.dmg'};
   var labels={win:'Windows',mac:'macOS'};
-  var hints={win:'Windows 桌面版 · EXE 安装包 · 激活后终身免费',mac:'macOS 桌面版（Intel / Apple Silicon 通用）· DMG 安装包 · 激活后终身免费'};
+  var hints={win:'Windows 桌面版 · EXE 安装包 · 12.7MB · 激活后终身免费',mac:'macOS 桌面版（Intel / Apple Silicon 通用）· DMG 安装包 · 21.9MB · 激活后终身免费'};
   function setOS(active){
     document.querySelectorAll('.btn-dl').forEach(function(b){
       if(files[active])b.href=files[active];
