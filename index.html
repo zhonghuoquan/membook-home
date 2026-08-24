@@ -455,6 +455,7 @@ footer a:hover{color:var(--accent)}
   <div class="nav-links">
     <a class="nav-text" href="#smart-layout">一键成册</a>
     <a class="nav-text" href="#workflow">极简流程</a>
+    <a class="nav-text" href="#cover-design">封面设计</a>
     <a class="nav-text" href="#print-quality">印刷输出</a>
     <a class="nav-text" href="#privacy">本地优先</a>
     <a class="nav-text" href="#advanced">细节微调</a>
@@ -483,8 +484,8 @@ footer a:hover{color:var(--accent)}
     
     <div class="hero-meta">
       <span>Windows 10+</span><span class="sep"></span>
-      <span>macOS 12+</span><span class="sep"></span>
-      <span>v1.1.1</span><span class="sep"></span>
+      <span>macOS 10.15+</span><span class="sep"></span>
+      <span>v1.2.0</span><span class="sep"></span>
       <a href="#smart-layout" style="color:var(--accent);font-weight:600">看它怎么排 →</a>
     </div>
   </div>
@@ -600,13 +601,13 @@ footer a:hover{color:var(--accent)}
 
   <div class="screen-showcase reveal"><div class="screen-text">
     <h3>不只是排版，<em>引擎会"读"照片</em></h3>
-    <p class="lead">一键成册不是随机堆图——软件会先给每张照片打分，再决定它的位置。从<strong>清晰度、人脸表情、内容丰富度</strong>等角度自动识别哪些是「值得放大」的瞬间，好照片自动占据整页大图；<strong>智能裁切</strong>永远对准人脸和主体，不会把重要部分切掉；还会按时间把整本相册分成<strong>4 段故事</strong>，每段用不同版式，翻起来像读一本有起承转合的杂志。</p>
-    <div class="screen-tags"><span class="screen-tag">7 维照片评分</span><span class="screen-tag">人脸/主体感知裁切</span><span class="screen-tag">4 段叙事节奏</span></div>
+    <p class="lead">一键成册不是随机堆图——软件会先给每张照片打分，再决定它的位置。从<strong>清晰度、人脸表情、内容丰富度</strong>等角度自动识别哪些是「值得放大」的瞬间，好照片自动占据整页大图；<strong>智能裁切</strong>优先对准人脸和主体，不会把重要部分切掉；还会按时间把整本相册分成<strong>4 段故事</strong>，每段用不同版式，翻起来像读一本有起承转合的杂志。</p>
+    <div class="screen-tags"><span class="screen-tag">6 维照片评分</span><span class="screen-tag">人脸/主体感知裁切</span><span class="screen-tag">4 段叙事节奏</span></div>
   </div><div class="screen-visual" style="box-shadow:none;border-radius:0;border:none;background:transparent">
     <div style="display:flex;flex-direction:column;gap:10px">
       <div style="display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--glass-border);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-sm)">
         <div style="width:30px;height:30px;border-radius:8px;overflow:hidden;flex-shrink:0"><img src="images/travel-girl-cliff.png" alt="" style="width:100%;height:100%;object-fit:cover"></div>
-        <div style="flex:1"><div style="font-family:var(--font-display);font-weight:600;font-size:11px;color:var(--ink-soft)">评分 12/14 → hero 位</div><div style="height:5px;background:var(--line);border-radius:3px;margin-top:4px;overflow:hidden"><div style="width:86%;height:100%;background:linear-gradient(90deg,var(--brand-lighter),var(--brand));border-radius:3px"></div></div></div>
+        <div style="flex:1"><div style="font-family:var(--font-display);font-weight:600;font-size:11px;color:var(--ink-soft)">评分 12/13 → hero 位</div><div style="height:5px;background:var(--line);border-radius:3px;margin-top:4px;overflow:hidden"><div style="width:86%;height:100%;background:linear-gradient(90deg,var(--brand-lighter),var(--brand));border-radius:3px"></div></div></div>
         <div style="font-family:var(--font-display);font-weight:700;font-size:12px;color:var(--accent)"><svg class="ic ic-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/><path d="M11 8.5V14M8.5 11H13.5"/></svg> 放大</div>
       </div>
       <div style="display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--glass-border);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow-sm)">
@@ -726,9 +727,41 @@ footer a:hover{color:var(--accent)}
   </div>
 </div></section>
 
-<!-- Ch.03 Print Quality -->
+<!-- Ch.03 Cover Design — 封面封底成套设计 -->
+<section class="section reveal" id="cover-design"><div class="container">
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.03</span><span class="chapter-rule"></span><span class="chapter-num">封面封底设计</span></div>
+  <h2 class="section-title reveal">一本书的门面，<em>也要成套设计</em></h2>
+  <p class="section-sub reveal">MemBook 内置 8 款封面与 8 款配套封底，应用封面时封底自动同步成套——风格统一，不用自己费心搭配。</p>
+
+  <!-- 自动循环翻页动画：封面 → 翻页 → 封底 → 翻页 → 封面（效果对齐应用内封面预览） -->
+  <div class="cover-flip-stage reveal">
+    <div class="cover-flip-book" id="cover-flip-book">
+      <!-- 封底（隐藏，翻页时露出） -->
+      <div class="hc-frame hc-face-back" aria-hidden="true"><div class="hc-board is-back" id="flip-face-back">
+        <div class="hc-face" id="flip-back-content"></div>
+        <div class="hc-edge"></div><div class="hc-spine"></div><div class="hc-sheen"></div>
+        <div class="hc-hinge"></div><div class="hc-ridge"></div><div class="hc-groove"></div><div class="hc-diffuse"></div>
+      </div></div>
+      <!-- 封面（默认显示） -->
+      <div class="hc-frame hc-face-front"><div class="hc-board" id="flip-face-front">
+        <div class="hc-face" id="flip-front-content"></div>
+        <div class="hc-edge"></div><div class="hc-spine"></div><div class="hc-sheen"></div>
+        <div class="hc-hinge"></div><div class="hc-ridge"></div><div class="hc-groove"></div><div class="hc-diffuse"></div>
+      </div></div>
+      <!-- 落地投影 -->
+      <div class="hc-floor"></div>
+    </div>
+    <div class="cover-flip-hint">
+      <span class="cover-flip-badge">8 款封面 × 8 款封底</span>
+      <span class="seg"><i data-seg="0"></i><i data-seg="1"></i></span>
+      <span>自动循环 · 悬停放大</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- Ch.04 Print Quality -->
 <section class="section section-alt reveal" id="print-quality"><div class="container">
-  <div class="chapter-head reveal"><span class="chapter-num">Ch.03</span><span class="chapter-rule"></span><span class="chapter-num">印刷级输出</span></div>
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.04</span><span class="chapter-rule"></span><span class="chapter-num">印刷级输出</span></div>
   <h2 class="section-title reveal">屏幕什么样，<em>印出来就什么样</em></h2>
   <p class="section-sub reveal">屏幕上看什么样，印出来就是什么样。送印刷厂或发朋友圈，都拿得出手。</p>
 
@@ -752,9 +785,9 @@ footer a:hover{color:var(--accent)}
   </div></div>
 </div></section>
 
-<!-- Ch.04 Privacy — condensed -->
+<!-- Ch.05 Privacy — condensed -->
 <section class="section section-alt reveal" id="privacy"><div class="container">
-  <div class="chapter-head reveal"><span class="chapter-num">Ch.04</span><span class="chapter-rule"></span><span class="chapter-num">本地优先</span></div>
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.05</span><span class="chapter-rule"></span><span class="chapter-num">本地优先</span></div>
   <h2 class="section-title reveal">你的照片，<em>从头到尾只在你手里</em></h2>
   <p class="section-sub reveal">打开网站就能用，无需注册账号、不用点"同意协议"。没有服务器在中间经手你的任何一张照片。</p>
 
@@ -858,9 +891,9 @@ footer a:hover{color:var(--accent)}
   </div></div>
 </div></section>
 
-<!-- Ch.05 Advanced interactions -->
+<!-- Ch.06 Advanced interactions -->
 <section class="section reveal" id="advanced"><div class="container">
-  <div class="chapter-head reveal"><span class="chapter-num">Ch.05 · 进阶玩法</span><span class="chapter-rule"></span><span class="chapter-num">细节微调</span></div>
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.06 · 进阶玩法</span><span class="chapter-rule"></span><span class="chapter-num">细节微调</span></div>
   <h2 class="section-title reveal">想微调？<em>每个细节都听你的</em></h2>
   <p class="section-sub reveal">一键成册给起点，手动微调给掌控感。画布浮动工具栏的三种调节方式，点击、拖拽，直接看效果。</p>
   <div style="display:flex;flex-direction:column;gap:20px">
@@ -968,9 +1001,9 @@ footer a:hover{color:var(--accent)}
   </div>
 </div></section>
 
-<!-- Ch.06 Photo Tools — 附加能力 -->
+<!-- Ch.07 Photo Tools — 附加能力 -->
 <section class="section section-alt reveal" id="photo-tools"><div class="container">
-  <div class="chapter-head reveal"><span class="chapter-num">Ch.06 · 附加能力</span><span class="chapter-rule"></span><span class="chapter-num">照片整理</span></div>
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.07 · 附加能力</span><span class="chapter-rule"></span><span class="chapter-num">照片整理</span></div>
   <h2 class="section-title reveal">拖进来之前，<em>先帮你收拾干净</em></h2>
   <p class="section-sub reveal">去重、归类、格式转换、日期修复——导入时自动完成。让你做相册的素材，先一步整齐。</p>
 
@@ -1002,9 +1035,9 @@ footer a:hover{color:var(--accent)}
   </div></div>
 </div></section>
 
-<!-- Ch.07 Platform + Users merged -->
+<!-- Ch.08 Platform + Users merged -->
 <section class="section section-alt reveal" id="platform"><div class="container">
-  <div class="chapter-head reveal"><span class="chapter-num">Ch.07</span><span class="chapter-rule"></span><span class="chapter-num">双平台 · 适合你</span></div>
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.08</span><span class="chapter-rule"></span><span class="chapter-num">双平台 · 适合你</span></div>
   <h2 class="section-title reveal">在哪用，<em>都本地优先</em></h2>
   <p class="section-sub reveal">所有功能都在你自己的设备上运行，照片始终不离开你的电脑。</p>
   <div class="platform-grid">
@@ -1019,9 +1052,9 @@ footer a:hover{color:var(--accent)}
   </div>
 </div></section>
 
-<!-- Ch.08 Compare — Canva 对比锚点 -->
+<!-- Ch.09 Compare — Canva 对比锚点 -->
 <section class="section reveal" id="compare"><div class="container">
-  <div class="chapter-head reveal"><span class="chapter-num">Ch.08</span><span class="chapter-rule"></span><span class="chapter-num">对比锚点</span></div>
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.09</span><span class="chapter-rule"></span><span class="chapter-num">对比锚点</span></div>
   <h2 class="section-title reveal">为什么不直接用 <em>Canva</em>？</h2>
   <p class="section-sub reveal">通用工具把相册做成了又一个设计任务——选模板、拖元素、调间距，全靠手动。MemBook 把这些全删了，只留一件事：把照片变成相册。</p>
 
@@ -1037,6 +1070,7 @@ footer a:hover{color:var(--accent)}
       <tbody>
         <tr><td>一键成册（184 种版式）</td><td class="col-us"><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
         <tr><td>自定义模板创建器（拖拽槽位）</td><td class="col-us"><span class="yes">✓</span></td><td><span class="partial">部分</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
+        <tr><td>封面封底成套设计（8 封面 + 8 封底）</td><td class="col-us"><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
         <tr><td>智能裁剪 · 构图自动优化</td><td class="col-us"><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td></tr>
         <tr><td>横竖图自动适配 · 零留白</td><td class="col-us"><span class="yes">✓</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="partial">部分</span></td></tr>
         <tr><td>印刷级高清 PDF（最高 600 DPI）</td><td class="col-us"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="no">—</span></td></tr>
@@ -1052,19 +1086,19 @@ footer a:hover{color:var(--accent)}
   <div class="compare-caption">通用工具做一百件事，专精工具做好一件。MemBook 只做相册。</div>
 </div></section>
 
-<!-- Ch.09 FAQ -->
+<!-- Ch.10 FAQ -->
 <section class="section reveal" id="faq"><div class="container">
-  <div class="chapter-head reveal"><span class="chapter-num">Ch.09</span><span class="chapter-rule"></span><span class="chapter-num">常见问题</span></div>
+  <div class="chapter-head reveal"><span class="chapter-num">Ch.10</span><span class="chapter-rule"></span><span class="chapter-num">常见问题</span></div>
   <h2 class="section-title reveal">常见<em>问题</em></h2>
   <p class="section-sub reveal">关于 MemBook 你可能想了解的事。</p>
   <div class="faq-list">
     <details class="faq-item"><summary>照片会上传到服务器吗？</summary><div class="faq-answer">完全不上传。所有数据都存在你自己的电脑里。断网也能用，不用注册登录。</div></details>
     <details class="faq-item"><summary>支持哪些图片格式？</summary><div class="faq-answer">常见的照片格式都支持，包括 iPhone 的新照片格式（HEIC/LIVP）。这类照片会自动转成普通格式，你什么都不用装，拖进来就能用。</div></details>
     <details class="faq-item"><summary>能直接打印吗？</summary><div class="faq-answer">桌面版支持一键直接打印（仅 Windows），不用先导出再开别的软件。也可以导出高清 PDF（最高 600 DPI），送印刷厂或家用打印机都可以。</div></details>
-    <details class="faq-item"><summary>和 Canva 有什么不同？</summary><div class="faq-answer">Canva 是通用设计软件，什么都能做。MemBook 只专注相册——所以有一键成册（184 种版式自动排版）、智能裁剪、自定义模板、数据不上传、照片整理这些 Canva 没有的能力。专精一件事，效率自然更高，详见上方对比表。</div></details>
+    <details class="faq-item"><summary>和 Canva 有什么不同？</summary><div class="faq-answer">Canva 是通用设计软件，什么都能做。MemBook 只专注相册——所以有一键成册（184 种版式自动排版）、封面封底成套设计、智能裁剪、自定义模板、数据不上传、照片整理这些 Canva 没有的能力。专精一件事，效率自然更高，详见上方对比表。</div></details>
     <details class="faq-item"><summary>照片太多会卡吗？</summary><div class="faq-answer">不会。软件只加载你正在看的那一页，翻页很流畅；照片压缩在后台悄悄进行，不会卡住操作；桌面版直接读原图，也不占多余空间。</div></details>
     <details class="faq-item"><summary>价格是多少？激活后可以终身使用吗？</summary><div class="faq-answer">限时特价 <strong>¥29.9</strong>（原价 ¥99），一次激活终身使用，没有订阅。激活码在你电脑上本地验证，不需要联网，也不绑定设备。</div></details>
-    <details class="faq-item"><summary>7 天试用结束后怎么办？</summary><div class="faq-answer">试用期内可无限制使用全部核心功能：多项目管理、184 种版式一键成册、自定义模板、照片整理工具（去重/归类/转格式）、水印、滤镜调色、PDF 高清导出与打印。试用结束后输入激活码即可终身使用。</div></details>
+    <details class="faq-item"><summary>7 天试用结束后怎么办？</summary><div class="faq-answer">试用期内可无限制使用全部核心功能：多项目管理、184 种版式一键成册、封面封底成套设计、自定义模板、照片整理工具（去重/归类/转格式）、水印、滤镜调色、PDF 高清导出与打印。试用结束后输入激活码即可终身使用。</div></details>
     <details class="faq-item"><summary>水印里的地名是怎么来的？</summary><div class="faq-answer">由第三方地图服务把照片定位转换成中文地名，个别网络环境可能转换失败。失败时水印只显示经纬度数字，不影响导出。</div></details>
   </div>
 </div></section>
@@ -1217,5 +1251,8 @@ footer a:hover{color:var(--accent)}
   toggle();
 })();
 </script>
+
+<link rel="stylesheet" href="cover-gallery.css">
+<script src="cover-gallery.js"></script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+/* ═══════════════ Cover Gallery — 封面设计库（复刻应用内 CoverGallery + CoverFlipPreview） ═══════════════ */
+
+/* ── 自动循环翻页动画舞台（硬壳实物效果，对齐应用内 HardcoverFrame + CoverFlipPreview） ── */
+.cover-flip-stage{position:relative;max-width:640px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:30px}
+.cover-flip-book{position:relative;width:min(440px,84vw);aspect-ratio:1/1;perspective:1600px;container-type:inline-size;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.cover-flip-book:hover{transform:scale(1.045);box-shadow:0 30px 60px rgba(108,99,255,0.14)}
+.cover-flip-book .hc-frame{position:absolute;inset:0;container-type:inline-size;overflow:visible}
+.cover-flip-book .hc-face{position:absolute;inset:0;container-type:inline-size}
+/* 硬壳书板（复刻 HardcoverFrame 实物效果） */
+.hc-frame{width:100%;height:100%}
+.hc-board{position:absolute;inset:0;border-radius:1px 2px 3px 1px;background:#fff;overflow:hidden;box-shadow:0 0.6cqw 1.8cqw rgba(0,0,0,0.20),0 1.8cqw 5cqw rgba(0,0,0,0.14),0 3.5cqw 9cqw rgba(0,0,0,0.12)}
+.hc-board.is-back{border-radius:1px 1px 3px 2px}
+/* 纸板厚度边缘高光/暗边 */
+.hc-edge{position:absolute;inset:0;pointer-events:none;z-index:55;border-radius:1px 2px 3px 1px;box-shadow:inset 1px 0 0 0 rgba(255,255,255,0.20),inset -1px -1px 0 0 rgba(0,0,0,0.10),inset 0 0 0 1px rgba(0,0,0,0.05)}
+.hc-board.is-back .hc-edge{border-radius:1px 1px 3px 2px;box-shadow:inset -1px 0 0 0 rgba(255,255,255,0.20),inset 1px -1px 0 0 rgba(0,0,0,0.10),inset 0 0 0 1px rgba(0,0,0,0.05)}
+/* 书脊棱：细暗线 + 受光亮带 */
+.hc-spine{position:absolute;top:0;bottom:0;left:0;width:1.6cqw;pointer-events:none;z-index:56;border-radius:2px 0 0 2px;background:linear-gradient(90deg,rgba(0,0,0,0.30) 0%,rgba(255,255,255,0.18) 14%,rgba(255,255,255,0.05) 55%,rgba(255,255,255,0) 100%);box-shadow:inset 0 1.1cqw 0.7cqw -0.5cqw rgba(0,0,0,0.12),inset 0 -1.1cqw 0.7cqw -0.5cqw rgba(0,0,0,0.12)}
+.hc-board.is-back .hc-spine{left:auto;right:0;border-radius:0 2px 2px 0;background:linear-gradient(270deg,rgba(0,0,0,0.30) 0%,rgba(255,255,255,0.18) 14%,rgba(255,255,255,0.05) 55%,rgba(255,255,255,0) 100%)}
+/* 表面光泽 */
+.hc-sheen{position:absolute;inset:0;pointer-events:none;z-index:60;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,rgba(255,255,255,0.01) 30%,transparent 50%,rgba(0,0,0,0.02) 70%,rgba(0,0,0,0.05) 100%)}
+.hc-board.is-back .hc-sheen{background:linear-gradient(225deg,rgba(255,255,255,0.06) 0%,rgba(255,255,255,0.01) 30%,transparent 50%,rgba(0,0,0,0.02) 70%,rgba(0,0,0,0.05) 100%)}
+/* 铰链压槽（书脊侧 8%） */
+.hc-hinge{position:absolute;top:0;bottom:0;left:0;width:8%;pointer-events:none;z-index:50;background:linear-gradient(to right,rgba(0,0,0,0.03),rgba(0,0,0,0.01) 70%,transparent 100%)}
+.hc-board.is-back .hc-hinge{left:auto;right:0;background:linear-gradient(to left,rgba(0,0,0,0.03),rgba(0,0,0,0.01) 70%,transparent 100%)}
+.hc-ridge{position:absolute;top:0;bottom:0;left:calc(8% - 2px);width:2px;pointer-events:none;z-index:51;background:linear-gradient(to bottom,rgba(255,255,255,0.03),rgba(255,255,255,0.12) 20%,rgba(255,255,255,0.12) 80%,rgba(255,255,255,0.03))}
+.hc-groove{position:absolute;top:0;bottom:0;left:8%;width:2px;pointer-events:none;z-index:51;background:linear-gradient(to bottom,rgba(0,0,0,0.02),rgba(0,0,0,0.09) 20%,rgba(0,0,0,0.09) 80%,rgba(0,0,0,0.02))}
+.hc-diffuse{position:absolute;top:0;bottom:0;left:calc(8% + 2px);width:5%;pointer-events:none;z-index:51;background:linear-gradient(to right,rgba(0,0,0,0.10),rgba(0,0,0,0.02) 55%,rgba(0,0,0,0))}
+.hc-board.is-back .hc-ridge{left:auto;right:calc(8% - 2px)}
+.hc-board.is-back .hc-groove{left:auto;right:8%}
+.hc-board.is-back .hc-diffuse{left:auto;right:calc(8% + 2px);background:linear-gradient(to left,rgba(0,0,0,0.10),rgba(0,0,0,0.02) 55%,rgba(0,0,0,0))}
+/* 落地投影 */
+.hc-floor{position:absolute;left:-3cqw;right:-3cqw;bottom:-6cqw;height:14cqw;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0.22),rgba(0,0,0,0) 72%);filter:blur(5px)}
+/* 自动翻页循环：front 默认可见，back 叠在上方。
+   show-back 为持久状态：翻页动画结束后封底保持可见，直到下次翻回封面。
+   翻页动画类（flip-to-*）只在动画期间生效，用 opacity 接管层显隐。 */
+.cover-flip-book .hc-face-front{opacity:1}
+.cover-flip-book .hc-face-back{opacity:0;pointer-events:none}
+.cover-flip-book.show-back .hc-face-front{opacity:0;pointer-events:none}
+.cover-flip-book.show-back .hc-face-back{opacity:1}
+.cover-flip-book.flip-to-back .hc-face-front{animation:cflip-front-out .55s cubic-bezier(.5,0,.8,.4) forwards}
+.cover-flip-book.flip-to-back .hc-face-back{animation:cflip-back-in .5s cubic-bezier(.22,1,.36,1) .28s both}
+.cover-flip-book.flip-to-front .hc-face-back{animation:cflip-back-out .55s cubic-bezier(.5,0,.8,.4) forwards}
+.cover-flip-book.flip-to-front .hc-face-front{animation:cflip-front-in .5s cubic-bezier(.22,1,.36,1) .28s both}
+@keyframes cflip-front-out{to{transform:perspective(1400px) translateX(-38%) rotateY(-34deg);opacity:0}}
+@keyframes cflip-back-in{from{opacity:.4;transform:perspective(1600px) rotateY(24deg)}to{opacity:1;transform:perspective(1600px) rotateY(0)}}
+@keyframes cflip-back-out{to{transform:perspective(1400px) translateX(38%) rotateY(34deg);opacity:0}}
+@keyframes cflip-front-in{from{opacity:.4;transform:perspective(1600px) rotateY(-24deg)}to{opacity:1;transform:perspective(1600px) rotateY(0)}}
+/* 循环播放指示 */
+.cover-flip-hint{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--ink-muted)}
+.cover-flip-hint .seg{display:flex;gap:5px}
+.cover-flip-hint .seg i{width:20px;height:3px;border-radius:2px;background:var(--line);transition:background .3s}
+.cover-flip-hint .seg i.on{background:var(--accent)}
+.cover-flip-badge{font-size:11px;color:var(--accent);background:var(--accent-lighter);padding:5px 14px;border-radius:999px;letter-spacing:1px;font-weight:600}
+
+/* ── 封面面内元素（百分比坐标，cqw 等比缩放） ── */
+.cg-shape,.cg-photo,.cg-text{position:absolute;pointer-events:none}
+.cg-photo{background-size:cover;background-position:center;background-color:#B8C0CA}
+.cg-text{display:flex;flex-direction:column;overflow:hidden;white-space:pre-line}
+.cg-text span{white-space:pre-line}
